@@ -1,0 +1,61 @@
+---
+title: "Lab05"
+author: "Bernard Kindell"
+date: '(`r format(Sys.time(), "%B %d, %Y")`)'
+output: 
+  github_document: default
+  html_notebook: default 
+---
+
+
+
+```{r load-packages}
+
+# tidyverse packages
+library(dplyr)       # data wrangling
+
+
+# spatial packages
+library(mapview)     # preview geometric data
+library(sf)          # spatial tools
+library(tidycensus)  # demographic data
+library(tigris)      # tiger/line data
+
+# other packages
+library(here)        # file path management
+
+```
+```{r census key}
+census_api_key("bd7e74791681f6d4a90410810a317d001eeef6ae", overwrite = TRUE, install = TRUE)
+
+```
+```{r preview census}
+
+census <- load_variables(year = 2000, dataset = "sf1")
+
+```
+```{r population states}
+popStates <- get_decennial(geography = "state", year = 2000, variables = "P0001001")
+
+```
+```{r preview acs}
+
+census <- load_variables(year = 2019, dataset = "acs5")
+```
+```{r recipents SNAP}
+
+SNAPrecipents <- get_acs(geography = "county", year = 2019, state = 29, table = "B19058_001", output = "wide", geometry = TRUE)
+
+
+```
+```{r load-data}
+medicaid <- get_acs(geography = "county", year = 2019, state = 29, table = "C27007_002", output = "wide", geometry = TRUE)
+```
+
+
+
+```{r p1-q1}
+
+```
+
+
